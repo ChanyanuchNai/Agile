@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './style/App.css';
+import Navbar from "./Navbar";
+import {
+  BrowserRouter as Router, 
+  Routes,
+  Route
+} from "react-router-dom";
+
+
+import StudentTracking from "./trackingStudent";
+import AdminTracking from "./trackingAdmin";
+// import SearchBar from "./searchbar";
+// import Notifications from "./notifications";
+import ManagePermission from './ManagePermission';
+import FormInterface from './FormInterface';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app">
+    <Router>
+      <div className="content-wrapper" style={{display: 'flex', justifyContent: 'space-between'}}>
+        {/* <Navbar /> */}
+        <main className="main-content" style={{ flexGrow: '1' }}>
+          <Routes>
+            <Route path="/stuTrack" element={<FormInterface />} />
+            <Route path="/adminTrack" element={<AdminTracking />} />
+            <Route path="/ManagePermission" element={<ManagePermission />} />
+            {/* Define other routes that you need*/}
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  </div>
   );
 }
 
